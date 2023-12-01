@@ -26,4 +26,33 @@ export function getNameSafe(user: { first: string; last: string}): string {
     return `${user?.first}, ${user?.last}`;
 }
 
+export function printToFile(text: string, callback: () => void): void {
+    console.log(text);
+    callback();
+};
+ 
+ 
+export function arrayMutate(
+    numbers: number[],
+    mutate: (v: number) => number
+): number[] {
+    return numbers.map(mutate);
+}
+ 
+
+type MutationFunction = (v: number) => number; 
+export function arrayMutateWithType(
+    numbers: number[],
+    mutate: MutationFunction
+): number[] {
+    return numbers.map(mutate);
+}
+
+
+// const addOne = createAdder(1); addOne(2) = 3;
+export function createAdder(num: number): (val: number) => number {
+    return (val: number) => num + val;
+}
+
+
 export default addNumbers;
